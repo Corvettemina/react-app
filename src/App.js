@@ -33,9 +33,9 @@ const OfferingPage = () => {
     console.log("Sixth Hour Psalm:", sixthHourPsalm);
   };
 
+  
   return (
     <div className="center">
-      {/* Rest of the component code */}
       <form onSubmit={handleSubmit}>
         {/* Third Hour Psalm Dropdown */}
         <p className="titles">3rd Hour Psalm</p>
@@ -68,7 +68,7 @@ const OfferingPage = () => {
         </div>
         <br />
       </form>
-    </div>
+    </div> 
   );
 };
 
