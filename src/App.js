@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+//import { useNavigate } from "react-router-dom";
 import "./App.css"; // Create a new CSS file for styling
 
 const OfferingPage = () => {
@@ -28,13 +29,31 @@ const OfferingPage = () => {
   const handleSixthHourPsalmChange = (e) => {
     setSixthHourPsalm(e.target.value);
   };
-
+  //const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add logic to handle form submission
     console.log("Form submitted!");
     console.log("Third Hour Psalm:", thirdHourPsalm);
     console.log("Sixth Hour Psalm:", sixthHourPsalm);
+    const formData = {
+      thirdHourPsalm,
+      sixthHourPsalm,
+    };
+
+    // Add any logic for form submission processing here if needed.
+
+    // Send the data to the REST API using POST request
+    axios.post("http://localhost:5000/offering", formData)
+      .then((response) => {
+        console.log("API response:", response.data);
+        // Redirect to another page after successful submission
+        //navigate("/another-page");  // Change "/another-page" to the desired URL
+      })
+      .catch((error) => {
+        console.error("Error submitting data:", error);
+        // Handle any error or show a message to the user
+      });
   };
 
   return (
