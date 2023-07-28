@@ -1,107 +1,71 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-//import { useNavigate } from "react-router-dom";
-import "./App.css"; // Create a new CSS file for styling
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./App.css"; // Import your custom styles
 
-const OfferingPage = () => {
-  const [thirdHourPsalm, setThirdHourPsalm] = useState("");
-  const [sixthHourPsalm, setSixthHourPsalm] = useState("");
-  const [psalmData, setPsalmData] = useState({ thirdHourPsalms: [], sixthHourPsalms: [] });
+const PowerPointCreator = () => {
+  const [startDate, setStartDate] = useState(null);
+  const [copticData, setCopticData] = useState({});
 
   useEffect(() => {
-    // Fetch data from the API and update the state
-    axios.get("http://192.81.219.24:8080/offering")
-      .then((response) => {
-        setPsalmData(response.data[1]);
-        // Set the default values to the first items in the lists
-        setThirdHourPsalm(response.data[1].thirdHourPsalms[0] || "");
-        setSixthHourPsalm(response.data[1].sixthHourPsalms[0] || "");
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    // Fetch the API data when the component mounts
+    fetchApiData();
   }, []);
 
-  const handleThirdHourPsalmChange = (e) => {
-    setThirdHourPsalm(e.target.value);
-  };
-
-  const handleSixthHourPsalmChange = (e) => {
-    setSixthHourPsalm(e.target.value);
-  };
-  //const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic to handle form submission
-    console.log("Form submitted!");
-    console.log("Third Hour Psalm:", thirdHourPsalm);
-    console.log("Sixth Hour Psalm:", sixthHourPsalm);
-    const formData = {
-      thirdHourPsalm,
-      sixthHourPsalm,
-    };
-
-    // Add any logic for form submission processing here if needed.
-
-    // Send the data to the REST API using POST request
-    axios.post("http://localhost:5000/offering", formData)
-      .then((response) => {
-        console.log("API response:", response.data);
-        // Redirect to another page after successful submission
-        //navigate("/another-page");  // Change "/another-page" to the desired URL
+  const fetchApiData = () => {
+    // Make an API call to get the data (replace 'http://example.com/api' with your API endpoint)
+    fetch("http://192.81.219.24:8080/home")
+      .then((response) => response.json())
+      .then((data) => {
+        setCopticData(data);
       })
       .catch((error) => {
-        console.error("Error submitting data:", error);
-        // Handle any error or show a message to the user
+        console.error("Error fetching API data:", error);
       });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formattedDate = startDate.toLocaleDateString("en-CA");
+    console.log("Selected date:", formattedDate);
+    // Handle form submission logic here
+    axios
+    .post("http:///192.81.219.24:8080/date?date="+formattedDate)
+    .then((response) => {
+      console.log("API response:", response.data);
+      // Redirect to another page after successful submission
+      //navigate("/");  // Change "/another-page" to the desired URL
+    })
+    .catch((error) => {
+      console.error("Error submitting data:", error);
+      // Handle any error or show a message to the user
+    });
   };
 
   return (
-    <div className="center">
-      <form onSubmit={handleSubmit} className="offering-form">
-        {/* Third Hour Psalm Dropdown */}
-        <div className="form-group">
-          <label htmlFor="thirdHourPsalm" className="titles">3rd Hour Psalm</label>
-          <select
-            id="thirdHourPsalm"
-            name="thirdHourPsalm"
-            value={thirdHourPsalm}
-            onChange={handleThirdHourPsalmChange}
-            className="form-control"
-          >
-            {psalmData.thirdHourPsalms.map((item, index) => (
-              <option key={index} value={item}>
-                {item.split("/").slice(-1)[0].split(".")[0]}
-              </option>
-            ))}
-          </select>
-        </div>
-        {/* Sixth Hour Psalm Dropdown */}
-        <div className="form-group">
-          <label htmlFor="sixthHourPsalm" className="titles">6th Hour Psalm</label>
-          <select
-            id="sixthHourPsalm"
-            name="sixthHourPsalm"
-            value={sixthHourPsalm}
-            onChange={handleSixthHourPsalmChange}
-            className="form-control"
-          >
-            {psalmData.sixthHourPsalms.map((item, index) => (
-              <option key={index} value={item}>
-                {item.split("/").slice(-1)[0].split(".")[0]}
-              </option>
-            ))}
-          </select>
-        </div>
-        {/* Submit Button */}
+    <div className="centerVert">
+      <div className="homePage">
+        <p className="titles">Current Coptic Date is: {copticData.copticDate}</p>
+        <p className="titles">Current Coptic Sunday is: {copticData.sunday}</p>
+        <p className="titles">Current Coptic Season is: {copticData.season}</p>
+        <p className="titles">Current Coptic Occasion is: {copticData.occasion}</p>
+        <form onSubmit={handleSubmit} name="myform" className="datepicker">
+          <div className="homePage titles2">Select Date</div>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            className="datepicker"
+          />
         <div className="buttonDiv">
           <button type="submit" className="btn btn-success">
-            Submit Form
+            Submit
           </button>
         </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default OfferingPage;
+export default PowerPointCreator;
