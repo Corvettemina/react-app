@@ -55,6 +55,8 @@ const MatinsPage = () => {
         e.preventDefault();
         // Handle form submission logic here with the selectedDoxologies state
         const modifiedMatinsData = { ...apiData };
+        modifiedMatinsData.matinsLitanyofTheGospel = toggleStatus.toggle1 ? "Standard" : "Alternate";
+        modifiedMatinsData.matins5ShortLitanies = toggleStatus.toggle2 ? "Yes" : "No";
         modifiedMatinsData.seasonmatinsDoxologies = [selectedDoxologies];
         console.log(modifiedMatinsData);
         console.log("Selected Doxologies:", selectedDoxologies);
