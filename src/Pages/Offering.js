@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../App.css"; // Create a new CSS file for styling
 
 const OfferingPage = () => {
+  const location = useLocation();
+  const formattedDate = location.state?.formattedDate || "";
+  const [Header, setHeader] = useState({});
+  
   const [thirdHourPsalm, setThirdHourPsalm] = useState("");
   const [sixthHourPsalm, setSixthHourPsalm] = useState("");
   const [psalmData, setPsalmData] = useState({ thirdHourPsalms: [], sixthHourPsalms: [] });
@@ -18,7 +22,7 @@ const OfferingPage = () => {
         // Set the default values to the first items in the lists
         setThirdHourPsalm(response.data[1].thirdHourPsalms[0] || "");
         setSixthHourPsalm(response.data[1].sixthHourPsalms[0] || "");
-        setCopticData(response.data[0]);
+        setHeader(response.data[0]);
       })
       .catch((error) => {
           console.error("Error fetching data:", error);
@@ -58,11 +62,16 @@ const OfferingPage = () => {
   };
   return (
     <div>
-      
-
       <div className="center">
+      <p className="titles">Current Date is: {formattedDate}</p>
+        <p className="titles">Current Coptic Date is: {Header.copticDate}</p>
+        <p className="titles">Current Coptic Sunday is: {Header.sunday}</p>
+        <p className="titles">Current Coptic Season is: {Header.season}</p>
+        <p className="titles">Current Coptic Occasion is: {Header.ocassion}</p>
         <form onSubmit={handleSubmit} className="offering-form">
+
           {/* Third Hour Psalm Dropdown */}
+
           <div className="form-group">
             <label htmlFor="thirdHourPsalm" className="titles">3rd Hour Psalm</label>
             <select

@@ -5,6 +5,7 @@ import { Routes , Route } from "react-router-dom";
 import OfferingPage from "./Pages/Offering";
 import PowerPointCreator from "./Pages/Home";
 import MatinsPage from "./Pages/Matins";
+import VespersPage from "./Pages/Vespers";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route exact path="/" Component={PowerPointCreator} />
       <Route path="/offering" Component={OfferingPage} />
       <Route path="/matins" Component={MatinsPage} /> {/* Replace with your next page component */}
+      <Route path="/vespers" Component={VespersPage} />
       {/* Add more routes as needed */}
     </Routes>
   );

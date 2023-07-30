@@ -30,6 +30,12 @@ const PowerPointCreator = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formattedDate = startDate.toLocaleDateString("en-CA");
+    const formattedDateString = startDate.toLocaleDateString("en-US", {
+      weekday: "long", // Full name of the day (e.g., "Friday")
+      month: "long",   // Full name of the month (e.g., "March")
+      day: "numeric",  // Day of the month (e.g., "3")
+      year: "numeric", // Four-digit year (e.g., "2023")
+    });
     console.log("Selected date:", formattedDate);
     // Handle form submission logic here
     axios
@@ -37,7 +43,7 @@ const PowerPointCreator = () => {
     .then((response) => {
       console.log("API response:", response.data);
       // Redirect to another page after successful submission
-      navigate("/offering");  // Change "/another-page" to the desired URL
+      navigate("/vespers",  { state: { formattedDateString } });  // Change "/another-page" to the desired URL
     })
     .catch((error) => {
       console.error("Error submitting data:", error);

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation  } from "react-router-dom";
 import "./Styling/MatinsPage.css"; // Import your custom CSS file for styling
 
-const MatinsPage = () => {
+const VespersPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const formattedDate = location.state?.formattedDate || "";
+    const formattedDate = location.state?.formattedDateString || "";
     const [Header, setHeader] = useState({});
     const [apiData, setApiData] = useState({});
     const [selectedDoxologies, setSelectedDoxologies] = useState([]);
@@ -24,7 +24,7 @@ const MatinsPage = () => {
     const fetchApiData = () => {
         // Make an API call to get the data (replace 'http://example.com/api' with your API endpoint)
         axios
-            .get("http://192.81.219.24:8080/matins")
+            .get("http://192.81.219.24:8080/vespers")
             .then((response) => {
                 setApiData(response.data[1]);
                 setHeader(response.data[0]);
@@ -54,16 +54,16 @@ const MatinsPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission logic here with the selectedDoxologies state
-        const modifiedMatinsData = { ...apiData };
-        modifiedMatinsData.seasonmatinsDoxologies = [selectedDoxologies];
-        console.log(modifiedMatinsData);
+        const modifiedVespersData = { ...apiData };
+        modifiedVespersData.seasonVespersDoxologies = [selectedDoxologies];
+        console.log(modifiedVespersData);
         console.log("Selected Doxologies:", selectedDoxologies);
         axios
-            .post("http://localhost:5000/matins", modifiedMatinsData)
+            .post("http://localhost:5000/vespers", modifiedVespersData)
             .then((response) => {
                 console.log("API response:", response.data);
                 // Redirect to another page after successful submission
-                navigate("/offering", { state: { formattedDate } });  // Change "/another-page" to the desired URL
+                navigate("/matins", { state: { formattedDate } });  // Change "/another-page" to the desired URL
             })
             .catch((error) => {
                 console.error("Error submitting data:", error);
@@ -73,19 +73,18 @@ const MatinsPage = () => {
 
     return (
         <div className="center">
+            <form onSubmit={handleSubmit} className="offering-form">
                 <p className="titles">Current Date is: {formattedDate}</p>
                 <p className="titles">Current Coptic Date is: {Header.copticDate}</p>
                 <p className="titles">Current Coptic Sunday is: {Header.sunday}</p>
                 <p className="titles">Current Coptic Season is: {Header.season}</p>
                 <p className="titles">Current Coptic Occasion is: {Header.ocassion}</p>
-            <form onSubmit={handleSubmit} className="offering-form">
-
                 <br />
 
-                {apiData.seasonmatinsDoxologies && apiData.seasonmatinsDoxologies.length > 0 ? (
+                {apiData.seasonVespersDoxologies && apiData.seasonVespersDoxologies.length > 0 ? (
                     <div>
-                        <p className="titles">Seasonal Matins Doxologies</p>
-                        {apiData.seasonmatinsDoxologies.map((item, index) => (
+                        <p className="titles">Seasonal Vespers Doxologies</p>
+                        {apiData.seasonVespersDoxologies.map((item, index) => (
                             <div className="zone" key={index}>
                                 <label>
                                     <input
@@ -141,7 +140,7 @@ const MatinsPage = () => {
 
                 <div className="buttonDiv">
                     <button type="submit" className="btn btn-success">
-                        Submit
+                        Next
                     </button>
                 </div>
             </form>
@@ -149,4 +148,4 @@ const MatinsPage = () => {
     );
 };
 
-export default MatinsPage;
+export default VespersPage;
