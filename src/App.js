@@ -6,6 +6,7 @@ import OfferingPage from "./Pages/Offering";
 import PowerPointCreator from "./Pages/Home";
 import MatinsPage from "./Pages/Matins";
 import VespersPage from "./Pages/Vespers";
+import LiturgyoftheWordPage from "./Pages/LiturgyoftheWord";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/offering" Component={OfferingPage} />
       <Route path="/matins" Component={MatinsPage} /> {/* Replace with your next page component */}
       <Route path="/vespers" Component={VespersPage} />
+      <Route path="/liturgyofword" Component={LiturgyoftheWordPage} />
       {/* Add more routes as needed */}
     </Routes>
   );

@@ -55,7 +55,7 @@ const MatinsPage = () => {
         e.preventDefault();
         // Handle form submission logic here with the selectedDoxologies state
         const modifiedMatinsData = { ...apiData };
-        modifiedMatinsData.matinsLitanyofTheGospel = toggleStatus.toggle1 ? "Standard" : "Alternate";
+        modifiedMatinsData.matinsLitanyofTheGospel = toggleStatus.toggle1 ? "Alternate" : "Standard";
         modifiedMatinsData.matins5ShortLitanies = toggleStatus.toggle2 ? "Yes" : "No";
         modifiedMatinsData.seasonmatinsDoxologies = [selectedDoxologies];
         console.log(modifiedMatinsData);
@@ -80,8 +80,11 @@ const MatinsPage = () => {
                 <p className="titles">Current Coptic Sunday is: {Header.sunday}</p>
                 <p className="titles">Current Coptic Season is: {Header.season}</p>
                 <p className="titles">Current Coptic Occasion is: {Header.ocassion}</p>
-            <form onSubmit={handleSubmit} className="offering-form">
 
+                <br></br>
+              
+            <form onSubmit={handleSubmit} className="offering-form">
+            <p className="titles">Matins</p>
                 <br />
 
                 {apiData.seasonmatinsDoxologies && apiData.seasonmatinsDoxologies.length > 0 ? (
@@ -105,11 +108,10 @@ const MatinsPage = () => {
                     </div>
                 ) : null}
 
-                <p className="titles">Toggle Buttons:</p>
+                
 
                 <div className="buttonDiv">
-                    <span>Litany of the Gospel</span>
-                    <br></br>
+                <p className="titles">Litany of the Gospel:</p>
                     <label className="switch">
 
                         <input
@@ -123,10 +125,9 @@ const MatinsPage = () => {
                     </label>
 
                 </div>
-                <span>{toggleStatus.toggle1 ? "Standard" : "Alternate"}</span>
+                <span>{toggleStatus.toggle1 ? "Alternate" : "Standard"}</span>
                 <div className="buttonDiv">
-                    <span>5 Short Litanies</span>
-                    <br></br>
+                <p className="titles">5 Short Litanies:</p>
                     <label className="switch">
                         <input
                             type="checkbox"
@@ -139,11 +140,11 @@ const MatinsPage = () => {
                     </label>
 
                 </div>
-                <span>{toggleStatus.toggle2 ? "On" : "Off"}</span>
+                <span>{toggleStatus.toggle2 ? "Yes" : "No"}</span>
 
                 <div className="buttonDiv">
                     <button type="submit" className="btn btn-success">
-                        Submit
+                        Next
                     </button>
                 </div>
             </form>

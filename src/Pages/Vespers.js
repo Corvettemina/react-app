@@ -56,6 +56,8 @@ const VespersPage = () => {
         // Handle form submission logic here with the selectedDoxologies state
         const modifiedVespersData = { ...apiData };
         modifiedVespersData.seasonVespersDoxologies = [selectedDoxologies];
+        modifiedVespersData.vespersLitanyofTheGospel = toggleStatus.toggle1 ? "Alternate" : "Standard";
+        modifiedVespersData.vespers5ShortLitanies = toggleStatus.toggle2 ? "Yes" : "No";
         console.log(modifiedVespersData);
         console.log("Selected Doxologies:", selectedDoxologies);
         axios
@@ -102,11 +104,10 @@ const VespersPage = () => {
                     </div>
                 ) : null}
 
-                <p className="titles">Toggle Buttons:</p>
+                
 
                 <div className="buttonDiv">
-                    <span>Litany of the Gospel</span>
-                    <br></br>
+                <p className="titles">Litany of the Gospel:</p>
                     <label className="switch">
 
                         <input
@@ -120,10 +121,10 @@ const VespersPage = () => {
                     </label>
 
                 </div>
-                <span>{toggleStatus.toggle1 ? "Standard" : "Alternate"}</span>
+                <span>{toggleStatus.toggle1 ? "Alternate" : "Standard"}</span>
                 <div className="buttonDiv">
-                    <span>5 Short Litanies</span>
-                    <br></br>
+                <p className="titles">5 Short Litanies:</p>
+
                     <label className="switch">
                         <input
                             type="checkbox"
@@ -136,7 +137,7 @@ const VespersPage = () => {
                     </label>
 
                 </div>
-                <span>{toggleStatus.toggle2 ? "On" : "Off"}</span>
+                <span>{toggleStatus.toggle2 ? "Yes" : "No"}</span>
 
                 <div className="buttonDiv">
                     <button type="submit" className="btn btn-success">

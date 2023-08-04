@@ -1,0 +1,137 @@
+/* Custom styles for the VespersPage component */
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .offering-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .titles {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .zone {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Customize the appearance of the checkboxes */
+  input[type="checkbox"] {
+    margin-right: 5px;
+    align-self: flex-start; /* Align checkboxes to the left side */
+  }
+  
+  /* Checkbox style - Square */
+  input[type="checkbox"] + span::before {
+    content: "\2713";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 10px;
+  }
+  
+  /* Checkbox style - Checkmark */
+  input[type="checkbox"]:checked + span::before {
+    content: "\2713";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    background-color: #007bff;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 10px;
+    color: #fff;
+  }
+  
+  /* Toggle button styles */
+  
+  /* The switch container */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+  
+  /* Hide default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider (round) */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: 0.4s;
+  }
+  
+  /* The slider - when checked (toggle button is active) */
+  .slider::before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+  
+  /* When the checkbox is checked, move the slider to the right (toggle button is active) */
+  input:checked + .slider {
+    background-color: #007bff; /* Change this to your desired active color */
+  }
+  
+  /* When the checkbox is checked, move the slider thumb to the right (toggle button is active) */
+  input:checked + .slider::before {
+    transform: translateX(26px); /* Width of the slider minus the width of the thumb */
+  }
+  
+  /* ... (other styles) ... */
+  

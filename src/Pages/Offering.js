@@ -11,7 +11,7 @@ const OfferingPage = () => {
   const [thirdHourPsalm, setThirdHourPsalm] = useState("");
   const [sixthHourPsalm, setSixthHourPsalm] = useState("");
   const [psalmData, setPsalmData] = useState({ thirdHourPsalms: [], sixthHourPsalms: [] });
-  const [copticData, setCopticData] = useState({});
+
 
   useEffect(() => {
     // Fetch data from the API and update the state
@@ -53,7 +53,7 @@ const OfferingPage = () => {
       .then((response) => {
         console.log("API response:", response.data);
         // Redirect to another page after successful submission
-        navigate("/");  // Change "/another-page" to the desired URL
+        navigate("/liturgyofword");  // Change "/another-page" to the desired URL
       })
       .catch((error) => {
         console.error("Error submitting data:", error);
