@@ -7,6 +7,7 @@ import PowerPointCreator from "./Pages/Home";
 import MatinsPage from "./Pages/Matins";
 import VespersPage from "./Pages/Vespers";
 import LiturgyoftheWordPage from "./Pages/LiturgyoftheWord";
+import LiturgyOfTheFaithfulPage from "./Pages/LiturgyoftheFaithful";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Route path="/matins" Component={MatinsPage} /> {/* Replace with your next page component */}
       <Route path="/vespers" Component={VespersPage} />
       <Route path="/liturgyofword" Component={LiturgyoftheWordPage} />
+      <Route path="/liturgyofFaithful" Component={LiturgyOfTheFaithfulPage} />
       {/* Add more routes as needed */}
     </Routes>
   );

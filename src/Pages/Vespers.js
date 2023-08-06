@@ -76,11 +76,11 @@ const VespersPage = () => {
     return (
         <div className="center">
             <form onSubmit={handleSubmit} className="offering-form">
-                <p className="titles">Current Date is: {formattedDate}</p>
-                <p className="titles">Current Coptic Date is: {Header.copticDate}</p>
-                <p className="titles">Current Coptic Sunday is: {Header.sunday}</p>
-                <p className="titles">Current Coptic Season is: {Header.season}</p>
-                <p className="titles">Current Coptic Occasion is: {Header.ocassion}</p>
+                <p className="titles">Selected Date is: {formattedDate}</p>
+                <p className="titles">Selected Coptic Date is: {Header.copticDate}</p>
+                <p className="titles">Selected Coptic Sunday is: {Header.sunday}</p>
+                <p className="titles">Selected Coptic Season is: {Header.season}</p>
+                <p className="titles">Selected Coptic Occasion is: {Header.ocassion}</p>
                 <br />
 
                 {apiData.seasonVespersDoxologies && apiData.seasonVespersDoxologies.length > 0 ? (

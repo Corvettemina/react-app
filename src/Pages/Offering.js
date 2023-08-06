@@ -63,15 +63,15 @@ const OfferingPage = () => {
   return (
     <div>
       <div className="center">
-      <p className="titles">Current Date is: {formattedDate}</p>
-        <p className="titles">Current Coptic Date is: {Header.copticDate}</p>
-        <p className="titles">Current Coptic Sunday is: {Header.sunday}</p>
-        <p className="titles">Current Coptic Season is: {Header.season}</p>
-        <p className="titles">Current Coptic Occasion is: {Header.ocassion}</p>
+
         <form onSubmit={handleSubmit} className="offering-form">
-
+        <p className="titles">Selected Date is: {formattedDate}</p>
+        <p className="titles">Selected Coptic Date is: {Header.copticDate}</p>
+        <p className="titles">Selected Coptic Sunday is: {Header.sunday}</p>
+        <p className="titles">Selected Coptic Season is: {Header.season}</p>
+        <p className="titles">Selected Coptic Occasion is: {Header.ocassion}</p>
           {/* Third Hour Psalm Dropdown */}
-
+          <br></br>
           <div className="form-group">
             <label htmlFor="thirdHourPsalm" className="titles">3rd Hour Psalm</label>
             <select
